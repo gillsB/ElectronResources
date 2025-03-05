@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
 
-  // run once on launch to ensure it is working (should log "static" to console.)
-  // @ts-ignore
-  window.electron.getStaticData();
+  useEffect(()=>{
+    // @ts-expect-error known error will make ipc typesafe in next commit
+    window.electron.subscribeStatistics((stats) => console.log(stats));
+  }, []);
 
   return (
     <>
