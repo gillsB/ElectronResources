@@ -6,7 +6,6 @@ function App() {
   const [count, setCount] = useState(0)
 
   useEffect(()=>{
-    // @ts-expect-error known error will make ipc typesafe in next commit
     window.electron.subscribeStatistics((stats) => console.log(stats));
   }, []);
 

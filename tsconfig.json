@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["./types"],
     "jsx": "react-jsx",
     "target": "es5",
     "lib": ["dom", "es6", "dom.iterable", "scripthost"],
