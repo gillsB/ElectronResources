@@ -2,6 +2,7 @@
     "appId": "com.gillsb.electron-learning",
     "files": ["dist-electron", "dist-react"],
     "icon": "./alt.png",
+    "extraResources": ["dist-electron/preload.cjs"],
     "mac": {
       "target": "dmg"
     },

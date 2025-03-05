@@ -5,6 +5,10 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
+  // run once on launch to ensure it is working (should log "static" to console.)
+  // @ts-ignore
+  window.electron.getStaticData();
+
   return (
     <>
       <div>
