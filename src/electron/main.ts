@@ -23,5 +23,5 @@ app.on("ready", () =>{
         return getStaticData();
     });
 
-    new Tray(path.join(getAssetPath(), 'alt.png'));
+    new Tray(path.join(getAssetPath(),  process.platform === "darwin" ? "altTemplate@2x.png" : 'alt@2x.png'));
 });
