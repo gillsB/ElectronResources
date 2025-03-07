@@ -9,7 +9,6 @@ function App() {
   const statistics = useStatistics(10);
   const cpuUsages = useMemo(()=> statistics.map(stat => stat.cpuUsage), [statistics]);
 
-  console.log(statistics)
 
   return (
     <>
