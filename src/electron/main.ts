@@ -1,8 +1,8 @@
-import {app, BrowserWindow} from "electron";
+import {app, BrowserWindow, Tray} from "electron";
 import path from 'path';
 import { ipcMainHandle, isDev } from './util.js'
 import { getStaticData, pollResources } from "./resourceManager.js";
-import { getPreloadPath, getUIPath } from "./pathResolver.js";
+import { getAssetPath, getPreloadPath, getUIPath } from "./pathResolver.js";
 
 app.on("ready", () =>{
     const mainWindow = new BrowserWindow({
@@ -22,4 +22,6 @@ app.on("ready", () =>{
     ipcMainHandle("getStaticData", () =>{
         return getStaticData();
     });
+
+    new Tray(path.join(getAssetPath(), 'alt.png'));
 });
