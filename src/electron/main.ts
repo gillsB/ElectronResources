@@ -23,5 +23,34 @@ app.on("ready", () =>{
         return getStaticData();
     });
 
-    new Tray(path.join(getAssetPath(),  process.platform === "darwin" ? "altTemplate@2x.png" : 'alt@2x.png'));
+    new Tray(path.join(getAssetPath(),
+    process.platform === "darwin" ? "altTemplate@2x.png" : 'alt@2x.png')
+    );
+
+    handleCloseEvents(mainWindow);
 });
+
+function handleCloseEvents(mainWindow: BrowserWindow){
+    let willClose = false;
+
+    mainWindow.on('close', (e) => {
+        if(willClose){
+            // if we tell it to close just return (full close).
+            return;
+        }
+        // else hide to tray.
+        e.preventDefault();
+        mainWindow.hide();
+        //mac os hide taskbar
+        if (app.dock){
+            app.dock.hide();
+        }
+    });
+    app.on('before-quit', () => {
+        willClose = true;
+    }); 
+
+    mainWindow.on('show', () =>{
+        willClose = false;
+    });
+}
