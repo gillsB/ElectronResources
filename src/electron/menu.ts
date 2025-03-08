@@ -10,6 +10,14 @@ export function createMenu(mainWindow: BrowserWindow){
     }
     */
 
+
+    //**********************************************
+    // All of the below is technically invalidated as
+    // It has swapped to a frameless window.
+    // This was more so for learning how to use, not for full
+    // implementation.
+    //  */
+
     Menu.setApplicationMenu(Menu.buildFromTemplate([{
         // MacOS by default names the first menu tab the same name as the source file.
         label: process.platform === 'darwin' ? undefined : "Dev",

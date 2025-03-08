@@ -40,3 +40,55 @@
 .read-the-docs {
   color: #888;
 }
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: right;
+  padding: 0; 
+  box-sizing: border-box;
+  background-color: #181818;
+  -webkit-app-region: drag; 
+  display: flex;
+  justify-content: flex-end; 
+  gap: 0; 
+  height: 2rem; 
+}
+
+button {
+  background: none;
+  border: none;
+  color: white;
+  width: 1rem; 
+  height: 2rem; 
+  cursor: pointer;
+  font-size: 0.8rem; 
+  line-height: 2rem; 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-app-region: no-drag;
+  border-radius: 0;
+}
+
+#close:hover {
+  background-color: red;
+  color: white;
+}
+
+#minimize:hover,
+#maximize:hover {
+  background-color: gray;
+}
+
+/* Hollow maximize icon */
+.maximize-icon {
+  width: 11px;
+  height: 11px;
+  border: 1px solid white;
+  box-sizing: border-box;
+  background: none;
+  position: absolute;
+}

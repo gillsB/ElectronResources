@@ -15,6 +15,7 @@ app.on("ready", () =>{
             // preload function to allow only specific functions to communicate with from the ui.
             preload: getPreloadPath(),
         },
+        frame: false,
     });
     if (isDev()){
         mainWindow.loadURL('http://localhost:5123')
