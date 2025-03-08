@@ -1,12 +1,14 @@
 import { app, BrowserWindow, Menu } from "electron";
-import { isDev } from "./util.js";
+import { ipcWebContentsSend, isDev } from "./util.js";
 
 export function createMenu(mainWindow: BrowserWindow){
     // If not isDev() return and do not create a menu
+    /*
     if (!isDev()){
         Menu.setApplicationMenu(null);
         return;
     }
+    */
 
     Menu.setApplicationMenu(Menu.buildFromTemplate([{
         // MacOS by default names the first menu tab the same name as the source file.
@@ -19,5 +21,24 @@ export function createMenu(mainWindow: BrowserWindow){
                 visible: isDev(),
             },
         ]
-    }]));
+    },
+    {
+        label: "View",
+        type: 'submenu',
+        submenu: [
+            {
+                label: "CPU",
+                click: () => ipcWebContentsSend('changeView', mainWindow.webContents, "CPU"),
+            },
+            {
+                label: "RAM",
+                click: () => ipcWebContentsSend('changeView', mainWindow.webContents, "RAM"),
+            },
+            {
+                label: "STORAGE",
+                click: () => ipcWebContentsSend('changeView', mainWindow.webContents, "STORAGE"),
+            },
+        ]
+    }    
+]));
 }

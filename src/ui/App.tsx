@@ -7,13 +7,34 @@ import { Chart } from './Chart'
 function App() {
   const [count, setCount] = useState(0)
   const statistics = useStatistics(10);
+  const [activeView, setActiveView] = useState<View>("CPU");
   const cpuUsages = useMemo(()=> statistics.map(stat => stat.cpuUsage), [statistics]);
+  const ramUsages = useMemo(()=> statistics.map(stat => stat.ramUsage), [statistics]);
+  const storageUsages = useMemo(()=> statistics.map(stat => stat.storageUsage), [statistics]);
+
+  const activeUsages = useMemo(()=> {
+    switch(activeView) {
+      case "CPU":
+        console.log("cpu")
+        return cpuUsages;
+      case "RAM":
+        console.log("ram")
+        return ramUsages;
+      case "STORAGE":
+        console.log("storage")
+        return storageUsages;
+    }
+  }, [activeView, cpuUsages, ramUsages, storageUsages]);
+
+  useEffect(()=>{
+    return window.electron.subscribeChangeView((view)=> setActiveView(view));
+  }, []);
 
 
   return (
     <>
       <div style={{height: 120}}>
-        <Chart data = {cpuUsages} maxDataPoints={10}></Chart>
+        <Chart data = {activeUsages} maxDataPoints={10}></Chart>
       </div>
       <div>
         <a href="https://react.dev" target="_blank">
