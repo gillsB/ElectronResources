@@ -35,9 +35,9 @@ function App() {
     <>
       <div className="App">
         <header>
-        <button id="minimize">─</button>
-        <button id="maximize"><span className="maximize-icon"></span></button>
-        <button id="close">✕</button>
+        <button id="minimize" onClick={()=> window.electron.sendFrameAction("MINIMIZE")}>─</button>
+        <button id="maximize" onClick={()=> window.electron.sendFrameAction("MAXIMIZE")}><span className="maximize-icon"></span></button>
+        <button id="close"onClick={()=> window.electron.sendFrameAction("CLOSE")}>✕</button>
         </header>
         <div style={{height: 120}}>
           <Chart data = {activeUsages} maxDataPoints={10}></Chart>
