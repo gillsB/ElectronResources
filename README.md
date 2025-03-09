@@ -2,15 +2,25 @@
 
 REQ:
 basic node setup + react  
+Fresh install: npm install
+
+(these are probably auto installed through npm install.)
 Electron installed (npm install --save-dev electron)  
 typescript (npm install --save-dev typescript @types/node )  
 npm i --save-dev npm-run-all  
 npm install vite --save-dev  
 npm install --save-dev electron-builder  
 npm install @types/fs-extra --save-dev  
-(unsure if most of these would be auto installed by npm install)  
+(most of these should be covered by npm install.)  
 
-Fresh install: npm install
+
+### Testing:
+
+Do not believe that the chromium browser is auto installed for playwright tests  
+so do:
+npx playwright install chromium
+
+
 
 Running:  
 run with: npm run dev  
@@ -20,6 +30,9 @@ building exe/distributable:
 npm run dist:win  
 npm run dist:linux  
 npm run dis:mac  
+
+Testing program (e2e):
+npm run test:e2e
 
 
 (auto-generated readme)
