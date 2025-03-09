@@ -11,7 +11,11 @@ export function createTray(mainWindow : BrowserWindow){
         {
             label: "Show",
             click: () =>{
-                mainWindow.show();
+                if (mainWindow.isMinimized()) {
+                    mainWindow.restore(); // calling .show() will revert it to the default launch size/mode.
+                } else {
+                    mainWindow.show();
+                }
                 //mac os restore taskbar
                 if(app.dock){
                     app.dock.show();

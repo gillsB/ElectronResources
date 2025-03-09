@@ -35,7 +35,11 @@ app.on("ready", () =>{
                 mainWindow.minimize();
                 break;
             case 'MAXIMIZE':
-                mainWindow.maximize();
+                if (mainWindow.isMaximized()) {
+                    mainWindow.unmaximize();
+                } else {
+                    mainWindow.maximize();
+                }
                 break;
             case 'CLOSE':
                 mainWindow.close();
