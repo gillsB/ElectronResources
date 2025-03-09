@@ -16,6 +16,6 @@
     "noEmit": true,
     "incremental": true
   },
-  "include": ["src"],
+  "include": ["src", "tests", "e2e/example.spec.ts"],
   "exclude": ["src/electron"],
 }

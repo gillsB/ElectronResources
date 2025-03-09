@@ -23,9 +23,9 @@ export function createTray(mainWindow : BrowserWindow){
             },
         },
         {
-        label: "Quit",
-        click: () =>app.quit(),
+            label: "Quit",
+            click: () =>app.quit(),
         }
 
-    ]))
+    ]));
 }
