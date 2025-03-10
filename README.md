@@ -2,22 +2,14 @@
 
 REQ:
 basic node setup + react  
-Fresh install: npm install
-
-(these are probably auto installed through npm install.)
-Electron installed (npm install --save-dev electron)  
-typescript (npm install --save-dev typescript @types/node )  
-npm i --save-dev npm-run-all  
-npm install vite --save-dev  
-npm install --save-dev electron-builder  
-npm install @types/fs-extra --save-dev  
-(most of these should be covered by npm install.)  
+to install:  
+npm install
 
 
-### Testing:
 
-Do not believe that the chromium browser is auto installed for playwright tests  
-so do:
+### Testing requirements:
+
+The chromium browser for playwright testing is not auto installed so if you wish to test run:  
 npx playwright install chromium
 
 
