@@ -1,49 +1,72 @@
-import { useEffect, useMemo, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import { useStatistics } from './useStatistics'
-import { Chart } from './Chart'
+import { useEffect, useMemo, useState } from "react";
+import "./App.css";
+import reactLogo from "./assets/react.svg";
+import { Chart } from "./Chart";
+import { useStatistics } from "./useStatistics";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   const statistics = useStatistics(10);
   const [activeView, setActiveView] = useState<View>("CPU");
-  const cpuUsages = useMemo(()=> statistics.map(stat => stat.cpuUsage), [statistics]);
-  const ramUsages = useMemo(()=> statistics.map(stat => stat.ramUsage), [statistics]);
-  const storageUsages = useMemo(()=> statistics.map(stat => stat.storageUsage), [statistics]);
+  const cpuUsages = useMemo(
+    () => statistics.map((stat) => stat.cpuUsage),
+    [statistics]
+  );
+  const ramUsages = useMemo(
+    () => statistics.map((stat) => stat.ramUsage),
+    [statistics]
+  );
+  const storageUsages = useMemo(
+    () => statistics.map((stat) => stat.storageUsage),
+    [statistics]
+  );
 
-  const activeUsages = useMemo(()=> {
-    switch(activeView) {
+  const activeUsages = useMemo(() => {
+    switch (activeView) {
       case "CPU":
-        console.log("cpu")
+        console.log("cpu");
         return cpuUsages;
       case "RAM":
-        console.log("ram")
+        console.log("ram");
         return ramUsages;
       case "STORAGE":
-        console.log("storage")
+        console.log("storage");
         return storageUsages;
     }
   }, [activeView, cpuUsages, ramUsages, storageUsages]);
 
-  useEffect(()=>{
-    return window.electron.subscribeChangeView((view)=> setActiveView(view));
+  useEffect(() => {
+    return window.electron.subscribeChangeView((view) => setActiveView(view));
   }, []);
-
 
   return (
     <>
       <div className="App">
         <header>
-        <button id="minimize" onClick={()=> window.electron.sendFrameAction("MINIMIZE")}>─</button>
-        <button id="maximize" onClick={()=> window.electron.sendFrameAction("MAXIMIZE")}><span className="maximize-icon"></span></button>
-        <button id="close"onClick={()=> window.electron.sendFrameAction("CLOSE")}>✕</button>
+          <button
+            id="minimize"
+            onClick={() => window.electron.sendFrameAction("MINIMIZE")}
+          >
+            ─
+          </button>
+          <button
+            id="maximize"
+            onClick={() => window.electron.sendFrameAction("MAXIMIZE")}
+          >
+            <span className="maximize-icon"></span>
+          </button>
+          <button
+            id="close"
+            onClick={() => window.electron.sendFrameAction("CLOSE")}
+          >
+            ✕
+          </button>
         </header>
-        <div style={{height: 120}}>
-          <Chart data = {activeUsages} maxDataPoints={10}></Chart>
+        <div style={{ height: 120 }}>
+          <Chart data={activeUsages} maxDataPoints={10}></Chart>
         </div>
         <div>
-          <a href="https://react.dev" target="_blank">
+          <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
             <img src={reactLogo} className="logo react" alt="React logo" />
           </a>
         </div>
@@ -61,7 +84,7 @@ function App() {
         </p>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
