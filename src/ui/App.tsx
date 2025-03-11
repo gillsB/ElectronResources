@@ -4,6 +4,7 @@ import { Chart } from "./Chart";
 import { useStatistics } from "./useStatistics";
 
 function App() {
+  const staticData = useStaticData();
   const statistics = useStatistics(10);
   const [activeView, setActiveView] = useState<View>("CPU");
   const cpuUsages = useMemo(
@@ -43,11 +44,19 @@ function App() {
         <Header />
         <div className="main">
           <div>
-            <SelectOption title="CPU" subTitle="TODO" data={cpuUsages} />
-            <SelectOption title="RAM" subTitle="TODO" data={ramUsages} />
+            <SelectOption
+              title="CPU"
+              subTitle={staticData?.cpuModel ?? ""}
+              data={cpuUsages}
+            />
+            <SelectOption
+              title="RAM"
+              subTitle={staticData?.totalMemoryGB.toString() + " GB"}
+              data={ramUsages}
+            />
             <SelectOption
               title="STORAGE"
-              subTitle="TODO"
+              subTitle={staticData?.totalStorage.toString() + " GB"}
               data={storageUsages}
             />
           </div>
@@ -102,6 +111,18 @@ function Header() {
       </button>
     </header>
   );
+}
+
+function useStaticData() {
+  const [staticData, setStaticData] = useState<StaticData | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      setStaticData(await window.electron.getStaticData());
+    })();
+  }, []);
+
+  return staticData;
 }
 
 export default App;

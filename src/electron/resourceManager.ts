@@ -22,7 +22,7 @@ export function pollResources(mainWindow: BrowserWindow) {
 export function getStaticData() {
   const totalStorage = getStorageData().total;
   const cpuModel = os.cpus()[0].model;
-  const totalMemoryGB = Math.floor(osUtils.totalmem() / 1024);
+  const totalMemoryGB = Math.round((osUtils.totalmem() / 1024) * 100) / 100;
 
   return {
     totalStorage,
@@ -42,12 +42,12 @@ function getRamUsage() {
 }
 
 function getStorageData() {
-  const stats = fs.statfsSync(process.platform === "win32" ? "C://" : "/");
+  const stats = fs.statfsSync(process.platform === "win32" ? "C:\\" : "/");
   const total = stats.bsize * stats.blocks;
   const free = stats.bsize * stats.bfree;
 
   return {
-    total: Math.floor(total / 1_000_000_000),
+    total: Math.floor(total / 1_073_741_824), // Convert bytes to GB (1 GiB = 1024^3)
     usage: 1 - free / total,
   };
 }
