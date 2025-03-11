@@ -48,23 +48,30 @@ function App() {
               title="CPU"
               subTitle={staticData?.cpuModel ?? ""}
               data={cpuUsages}
+              view="CPU"
               onClick={() => setActiveView("CPU")}
             />
             <SelectOption
               title="RAM"
               subTitle={staticData?.totalMemoryGB.toString() + " GB"}
               data={ramUsages}
+              view="RAM"
               onClick={() => setActiveView("RAM")}
             />
             <SelectOption
               title="STORAGE"
               subTitle={staticData?.totalStorage.toString() + " GB"}
               data={storageUsages}
+              view="STORAGE"
               onClick={() => setActiveView("STORAGE")}
             />
           </div>
           <div className="mainGrid">
-            <Chart data={activeUsages} maxDataPoints={10}></Chart>
+            <Chart
+              selectedView={activeView}
+              data={activeUsages}
+              maxDataPoints={10}
+            ></Chart>
           </div>
         </div>
       </div>
@@ -74,6 +81,7 @@ function App() {
 
 function SelectOption(props: {
   title: string;
+  view: View;
   subTitle: string;
   data: number[];
   onClick: () => void;
@@ -86,7 +94,7 @@ function SelectOption(props: {
       </div>
       <div className="selectOptionChart">
         {" "}
-        <Chart data={props.data} maxDataPoints={10} />
+        <Chart selectedView={props.view} data={props.data} maxDataPoints={10} />
       </div>
     </button>
   );
