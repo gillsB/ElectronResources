@@ -47,6 +47,35 @@ header button {
   position: absolute;
 }
 
+.main {
+  display: grid;
+  grid-template-columns: 16rem auto;
+}
+
 .mainGrid {
   height: 120px;
+}
+
+.selectOption {
+  display: block;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.selectOptionTitle {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.selectOptionTitle :first-child {
+  font-weight: 600;
+}
+.selectOptionTitle :nth-child(2) {
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
+.selectOptionChart {
+  height: 4rem;
+  width: 100%;
 }

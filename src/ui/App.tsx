@@ -41,13 +41,41 @@ function App() {
     <>
       <div className="App">
         <Header />
-        <div>
+        <div className="main">
+          <div>
+            <SelectOption title="CPU" subTitle="TODO" data={cpuUsages} />
+            <SelectOption title="RAM" subTitle="TODO" data={ramUsages} />
+            <SelectOption
+              title="STORAGE"
+              subTitle="TODO"
+              data={storageUsages}
+            />
+          </div>
           <div className="mainGrid">
             <Chart data={activeUsages} maxDataPoints={10}></Chart>
           </div>
         </div>
       </div>
     </>
+  );
+}
+
+function SelectOption(props: {
+  title: string;
+  subTitle: string;
+  data: number[];
+}) {
+  return (
+    <button className="selectOption">
+      <div className="selectOptionTitle">
+        <div>{props.title}</div>
+        <div>{props.subTitle}</div>
+      </div>
+      <div className="selectOptionChart">
+        {" "}
+        <Chart data={props.data} maxDataPoints={10} />
+      </div>
+    </button>
   );
 }
 
