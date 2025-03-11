@@ -50,7 +50,6 @@ header button {
 .main {
   display: grid;
   grid-template-columns: 16rem auto;
-  align-items: center;
   gap: 1rem;
 }
 
