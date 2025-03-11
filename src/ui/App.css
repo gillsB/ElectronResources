@@ -50,16 +50,24 @@ header button {
 .main {
   display: grid;
   grid-template-columns: 16rem auto;
+  align-items: center;
+  gap: 1rem;
 }
 
 .mainGrid {
-  height: 120px;
+  min-height: 10rem;
+  height: auto;
+  padding: 0.5rem;
 }
 
 .selectOption {
   display: block;
   padding: 0.5rem;
   width: 100%;
+  background-color: #2c2c2c;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 .selectOptionTitle {
@@ -76,6 +84,10 @@ header button {
 }
 
 .selectOptionChart {
-  height: 4rem;
+  height: 3rem;
   width: 100%;
+}
+
+.selectOptionChart * {
+  cursor: pointer;
 }
